@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:beautiful_app/text_style_hw.dart';
 
+var colorStart = const Color.fromARGB(255, 155, 213, 230);
+var colorEnd = const Color.fromARGB(255, 51, 143, 229);
+var startAlignment = Alignment.topLeft;
+var endAlignment = Alignment.bottomRight;
+
 // class name should be CamelCaseUpper
 class GradientContainer extends StatelessWidget {
   // named parameter - named arguements | positions arguements will be a comma seperated list
@@ -14,11 +19,11 @@ class GradientContainer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          begin: startAlignment,
+          end: endAlignment,
           colors: [
-            const Color.fromARGB(255, 155, 213, 230),
-            const Color.fromARGB(255, 51, 143, 229),
+            colorStart,
+            colorEnd,
           ],
         ),
       ),
