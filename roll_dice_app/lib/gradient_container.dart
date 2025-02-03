@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:beautiful_app/text_style_hw.dart';
 
-var colorStart = const Color.fromARGB(255, 155, 213, 230);
-var colorEnd = const Color.fromARGB(255, 51, 143, 229);
-var startAlignment = Alignment.topLeft;
-var endAlignment = Alignment.bottomRight;
+// final = var that will never change | best practice to be as restrictive as possible - ensure the var doesnt get overwritten elsewhere
+// const can be used aswell, telling dart the var is a compile time constant - use const wherever it makes sense
+const startAlignment = Alignment.topLeft;
+const endAlignment = Alignment.bottomRight;
 
 // class name should be CamelCaseUpper
+// example: named arguments | default named arguements are optional 
 class GradientContainer extends StatelessWidget {
   // named parameter - named arguements | positions arguements will be a comma seperated list
   // key - value wanted by parent (StatlessWidget)
-  const GradientContainer({super.key});
+  const GradientContainer({super.key, required this.colorStart, required this.colorEnd});
+
+  final Color colorStart;
+  final Color colorEnd;
 
   // @override makes it clear we're overriding the build method of stateless widget, not necessarily required
   // const - optimised and stored in memory for re-use
@@ -28,7 +32,8 @@ class GradientContainer extends StatelessWidget {
         ),
       ),
       child: Center(
-        child: StyleText(),
+        // child: StyleText("Hello World!"),
+        child: Image.asset('assets/images/dice-1.png', width: 200,),
       ),
     );
   }
