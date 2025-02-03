@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 class StyleText extends StatelessWidget {
   const StyleText(this.textArg, {super.key});
 
+  // provide a default value with .hello()
+  const StyleText.hello({super.key}) : textArg = "Hello World!";
+
   // initialise the textArg parameter
   final String textArg;
 
