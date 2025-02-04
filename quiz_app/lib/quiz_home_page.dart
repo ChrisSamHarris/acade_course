@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 
-// both DiceRoll and _DiceRollState are required to create a stateful widget
-class QuizHome extends StatefulWidget {
-  const QuizHome({super.key});
+final ButtonStyle btnStyle = ElevatedButton.styleFrom(
+  textStyle: const TextStyle(fontSize: 20),
+  foregroundColor: Colors.black,
+  backgroundColor: Colors.white,
+  side: BorderSide(color: Colors.black, width: 0.1),
+);
 
-  @override
-  State<QuizHome> createState() {
-    return _QuizHomeState();
-  }
-}
+class QuizHome extends StatelessWidget {
+  // added the activeScreen from the QuizState class as a positional arguement so the func can be called from here
+  // use functions as values and pass functions as values
+  const QuizHome(this.switchScreenFunc, {super.key});
 
-// using stateful widget = always works with two classes
-class _QuizHomeState extends State<QuizHome> {
-  final ButtonStyle btnStyle = ElevatedButton.styleFrom(
-    textStyle: const TextStyle(fontSize: 20),
-    foregroundColor: Colors.black,
-    backgroundColor: Colors.white,
-    side: BorderSide(color: Colors.black, width: 0.1),
-  );
+  final void Function() switchScreenFunc;
 
   @override
   Widget build(context) {
@@ -52,7 +47,7 @@ class _QuizHomeState extends State<QuizHome> {
           ),
           ElevatedButton.icon(
             onPressed: () {
-              // logic to start the quiz 
+              switchScreenFunc();
               print('start quiz pressed');
             },
             style: btnStyle,
