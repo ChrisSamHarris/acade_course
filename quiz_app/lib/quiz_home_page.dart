@@ -12,6 +12,7 @@ class QuizHome extends StatelessWidget {
   // use functions as values and pass functions as values
   const QuizHome(this.switchScreenFunc, {super.key});
 
+  // this function arguement is redundant with the terniary expression, but keep as reference 
   final void Function() switchScreenFunc;
 
   @override

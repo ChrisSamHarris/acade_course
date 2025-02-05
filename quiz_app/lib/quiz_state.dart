@@ -17,28 +17,41 @@ class QuizState extends StatefulWidget {
 }
 
 class _QuizState extends State<QuizState> {
-  // Widget? letting the PC know that activeScreen can also be null, still initialises the property 
-  Widget? activeScreen;
+  // Widget? letting the PC know that activeScreen can also be null, still initialises the property
+  // Widget? activeScreen;
+
+  var activeScreen = 'start-screen';
 
   @override
   void initState() {
     // this is a replacement for initial "Widget activeScreen = QuizHome(switchScreen);" - activeScreen still needs to be initialised
     super.initState();
-    activeScreen = QuizHome(switchScreen);
+    activeScreen = 'start-screen';
+    // activeScreen = QuizHome(switchScreen);
     // Addressining - The instance member 'switchScreen' can't be accessed in an initializer.
-    // method to add to state classes initialising state 
-    
+    // method to add to state classes initialising state
   }
 
   void switchScreen() {
     // render content conditionally -> Requires lifting the state up
     setState(() {
-      activeScreen = const QuizQuestions();
+      activeScreen = 'questions-screen';
     });
   }
 
   @override
   Widget build(context) {
+    // terniary expression - one value if a condition is met, another condition if a value is not met
+    // final screenWidget = activeScreen == 'start-screen'
+    //             ? QuizHome(switchScreen)
+    //             : const QuizQuestions();
+
+    Widget screenWidget = QuizHome(switchScreen);
+
+    if (activeScreen == 'questions-screen') {
+      screenWidget = const QuizQuestions();
+    }
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -53,7 +66,8 @@ class _QuizState extends State<QuizState> {
             ),
           ),
           child: Center(
-            child: activeScreen,
+            // terniary expression - one value if a condition is met, another condition if a value is not met
+            child: screenWidget,
           ),
         ),
       ),
