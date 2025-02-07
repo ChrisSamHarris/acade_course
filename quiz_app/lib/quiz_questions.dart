@@ -1,5 +1,6 @@
 // return text widget - stateful with some text returned (just an example question)
 import 'package:flutter/material.dart';
+import 'package:quiz_app/answer_button.dart';
 
 class QuizQuestions extends StatefulWidget {
   const QuizQuestions({super.key});
@@ -17,11 +18,6 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     foregroundColor: Colors.black,
     backgroundColor: Colors.white,
     side: BorderSide(color: Colors.black, width: 0.1),
-  );
-    final ButtonStyle answerStyle = ElevatedButton.styleFrom(
-    textStyle: const TextStyle(fontSize: 20),
-    foregroundColor: Colors.white,
-    side: BorderSide(color: Colors.black, width: 0.2),
   );
   final TextStyle questionStyle = const TextStyle(
     color: Colors.white,
@@ -41,17 +37,13 @@ class _QuizQuestionsState extends State<QuizQuestions> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "What is the capital of France?",
+                  "Question....",
                   style: questionStyle,
                 ),
                 const SizedBox(height: 40),
                 Column(
-                  children: ["A. Paris", "B. London", "C. Berlin"].map((answer) {
-                  return OutlinedButton(
-                    onPressed: () {},
-                    style: answerStyle,
-                    child: Text(answer),
-                  );
+                  children: ["A. Paris", "B. London", "C. Oslo"].map((answer) {
+                  return AnswerButton(answerText: answer, onTap: (){});
                   }).toList(),
                 ),
                 const SizedBox(height: 40),
