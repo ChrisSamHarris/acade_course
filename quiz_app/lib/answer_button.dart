@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
   final ButtonStyle answerStyle = OutlinedButton.styleFrom(
+    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
     textStyle: const TextStyle(fontSize: 20),
     foregroundColor: Colors.white,
     side: BorderSide(color: Colors.black, width: 0.2),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
   );
 
 // 8.05 on VIDEO 
