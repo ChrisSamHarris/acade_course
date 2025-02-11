@@ -4,7 +4,9 @@ import 'package:quiz_app/answer_button.dart';
 import 'package:quiz_app/data/question_data.dart';
 
 class QuizQuestions extends StatefulWidget {
-  const QuizQuestions({super.key});
+  const QuizQuestions({super.key,required this.onSelectAnswer});
+
+  final void Function(String answer) onSelectAnswer;
 
   @override
   State<QuizQuestions> createState() {
@@ -15,11 +17,12 @@ class QuizQuestions extends StatefulWidget {
 class _QuizQuestionsState extends State<QuizQuestions> {
 
   var currentQuestionIndex = 0;
-  answerQuestion() {
+  answerQuestion(String selectedAnswer) {
     if (currentQuestionIndex >= questions.length - 1) {
       print("No more questions");
       return;
     } else {
+      widget.onSelectAnswer(selectedAnswer);
       setState(() {
         currentQuestionIndex++; 
       });
@@ -32,10 +35,10 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     backgroundColor: Colors.white,
     side: BorderSide(color: Colors.black, width: 0.1),
   );
-  final TextStyle questionStyle = const TextStyle(
+  final TextStyle questionStyle = TextStyle(
     color: Colors.white,
     fontWeight: FontWeight.bold,
-    fontSize: 26,
+    fontSize: 24,
   );
 
   @override
@@ -69,7 +72,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                         width: double.infinity,
                         child: AnswerButton(answerText: answer, onTap: () {
                           print("Pressed: $answer");
-                          answerQuestion();
+                          answerQuestion(answer);
                         }),
                       ),
                     );

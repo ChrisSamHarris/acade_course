@@ -20,6 +20,7 @@ class _QuizState extends State<QuizState> {
   // Widget? letting the PC know that activeScreen can also be null, still initialises the property
   // Widget? activeScreen;
 
+  final List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';
 
   @override
@@ -39,6 +40,11 @@ class _QuizState extends State<QuizState> {
     });
   }
 
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+    print("Answeres selected: $selectedAnswers");
+  }
+
   @override
   Widget build(context) {
     // terniary expression - one value if a condition is met, another condition if a value is not met
@@ -49,7 +55,7 @@ class _QuizState extends State<QuizState> {
     Widget screenWidget = QuizHome(switchScreen);
 
     if (activeScreen == 'questions-screen') {
-      screenWidget = const QuizQuestions();
+      screenWidget = QuizQuestions(onSelectAnswer: chooseAnswer,);
     }
 
     return MaterialApp(
