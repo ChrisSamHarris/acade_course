@@ -28,7 +28,7 @@ class AnswerButton extends StatelessWidget {
     return OutlinedButton(
               onPressed: onTap,
               style: answerStyle,
-              child: Text(answerText),
+              child: Text(answerText, textAlign: TextAlign.center,),
     );
   }
 }

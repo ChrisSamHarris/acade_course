@@ -14,6 +14,18 @@ class QuizQuestions extends StatefulWidget {
 
 class _QuizQuestionsState extends State<QuizQuestions> {
 
+  var currentQuestionIndex = 0;
+  answerQuestion() {
+    if (currentQuestionIndex >= questions.length - 1) {
+      print("No more questions");
+      return;
+    } else {
+      setState(() {
+        currentQuestionIndex++; 
+      });
+    }
+  }
+
   final ButtonStyle btnStyle = ElevatedButton.styleFrom(
     textStyle: const TextStyle(fontSize: 20),
     foregroundColor: Colors.black,
@@ -23,12 +35,12 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   final TextStyle questionStyle = const TextStyle(
     color: Colors.white,
     fontWeight: FontWeight.bold,
-    fontSize: 20,
+    fontSize: 26,
   );
 
   @override
   Widget build(context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[currentQuestionIndex];
 
     return Center(
       child: Container(
@@ -50,26 +62,20 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                     ),
                   ),
                   const SizedBox(height: 40),
-                  ...currentQuestion.answers.map((answer) {
+                  ...currentQuestion.getShuffledAnswers().map((answer) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
                       child: SizedBox(
                         width: double.infinity,
-                        child: AnswerButton(answerText: answer, onTap: () {}),
+                        child: AnswerButton(answerText: answer, onTap: () {
+                          print("Pressed: $answer");
+                          answerQuestion();
+                        }),
                       ),
                     );
-                  }).toList(),
+                  }),
                 ],
               ),
-            ),
-            ElevatedButton.icon(
-              onPressed: () {
-                // logic to start the quiz
-                print('next question pressed');
-              },
-              style: btnStyle,
-              icon: Icon(Icons.skip_next),
-              label: const Text("Next Question..."),
             ),
             const SizedBox(height: 50),
           ],
